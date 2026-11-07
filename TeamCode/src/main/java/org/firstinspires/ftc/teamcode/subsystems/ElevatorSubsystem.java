@@ -1,19 +1,21 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.ivy.Command;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+@Configurable
 public class ElevatorSubsystem {
     // Variables
     private final DcMotor elevatorMotor;
     private final Servo boxRotatorServo;
-    private static final double ELEVATOR_UP_SPEED = 1.0;
-    private static final double ELEVATOR_DOWN_SPEED = -0.5;
-    private static final double ROTATOR_HOLD_POSITION = 1.0;
-    private static final double ROTATOR_GIVE_POSITION = 0.5;
-    private static final double ELEVATOR_HOLD_POWER = 0.2;
+    public static double ELEVATOR_UP_SPEED = 1.0;
+    public static double ELEVATOR_DOWN_SPEED = -0.5;
+    public static double ROTATOR_HOLD_POSITION = 1.0;
+    public static double ROTATOR_GIVE_POSITION = 0.5;
+    public static double ELEVATOR_HOLD_POWER = 0.2;
 
     // Functions/Actions
     public ElevatorSubsystem(HardwareMap hardwareMap) {

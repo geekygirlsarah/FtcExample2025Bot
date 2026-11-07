@@ -1,26 +1,28 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.commands.Commands;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+@Configurable
 public class GrabberSubsystem {
 
     // Variables
     private final Servo grabberServo;
     private final DcMotor armMotor;
 
-    // We don't actually know these but we'd probably use them in the real world
-    private final int ARM_DOWN_POSITION_TICKS = 0;
-    private final int ARM_UP_POSITION_TICKS = 0;
-    private final double GRABBER_FORWARD_POSITION = 1.0;
-    private final double GRABBER_REVERSE_POSITION = 0.0;
+    // Configurable positions and speeds
+    public static int ARM_DOWN_POSITION_TICKS = 0;
+    public static int ARM_UP_POSITION_TICKS = 0;
+    public static double GRABBER_FORWARD_POSITION = 1.0;
+    public static double GRABBER_REVERSE_POSITION = 0.0;
 
-    private final double ARM_UP_SPEED = 0.80;
-    private final double ARM_DOWN_SPEED = -0.40;
-    private final double ARM_STOP_SPEED = 0.4;
+    public static double ARM_UP_SPEED = 0.80;
+    public static double ARM_DOWN_SPEED = -0.40;
+    public static double ARM_STOP_SPEED = 0.4;
     // Functions
     public GrabberSubsystem(HardwareMap hardwareMap) {
         this.grabberServo = hardwareMap.get(Servo.class, "grabber");
