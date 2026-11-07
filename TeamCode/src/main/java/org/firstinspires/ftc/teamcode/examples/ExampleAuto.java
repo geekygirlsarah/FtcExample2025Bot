@@ -16,6 +16,7 @@ import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.OpModeStorage;
+import org.firstinspires.ftc.teamcode.panels.PanelsUtil;
 
 @Autonomous(group = "Examples", name = "Example Autonomous")
 public class ExampleAuto extends OpMode {
@@ -48,6 +49,7 @@ public class ExampleAuto extends OpMode {
 
     @Override
     public void init() {
+        PanelsUtil.init();
         Scheduler.reset();
 
         follower = Constants.create(hardwareMap);
@@ -65,15 +67,17 @@ public class ExampleAuto extends OpMode {
         follower.update();
         Scheduler.execute();
 
+        PanelsUtil.drawRobot(follower.pose());
+
         telemetry.addData("X", follower.pose().x());
         telemetry.addData("Y", follower.pose().y());
         telemetry.addData("Heading", Math.toDegrees(follower.pose().heading()));
         telemetry.addData("Follower Mode", follower.mode());
-        telemetry.update();
+        PanelsUtil.update(telemetry);
     }
 
     public void stop()
     {
-        OpModeStorage.autonmousEndPose = follower.pose();
+        OpModeStorage.autonomousEndPose = follower.pose();
     }
 }

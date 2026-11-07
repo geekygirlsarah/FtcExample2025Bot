@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.panels.PanelsUtil;
 
 @TeleOp(group = "Examples", name = "Example Robot-Centric TeleOp")
 public class ExampleRobotCentricTeleOp extends OpMode {
@@ -13,6 +14,7 @@ public class ExampleRobotCentricTeleOp extends OpMode {
 
     @Override
     public void init() {
+        PanelsUtil.init();
         follower = Constants.create(hardwareMap);
     }
 
@@ -24,5 +26,13 @@ public class ExampleRobotCentricTeleOp extends OpMode {
 
         follower.manual(forward, lateral, turn);
         follower.update();
+
+        PanelsUtil.drawRobot(follower.pose());
+
+        telemetry.addData("X", follower.pose().x());
+        telemetry.addData("Y", follower.pose().y());
+        telemetry.addData("Heading", Math.toDegrees(follower.pose().heading()));
+        telemetry.addData("Follower Mode", follower.mode());
+        PanelsUtil.update(telemetry);
     }
 }

@@ -7,18 +7,20 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.OpModeStorage;
+import org.firstinspires.ftc.teamcode.panels.PanelsUtil;
 
 public class ExampleFieldCentricDriveTeleOp extends OpMode {
     private Follower follower;
 
     @Override
     public void init() {
+        PanelsUtil.init();
         follower = Constants.create(hardwareMap);
     }
 
     @Override
     public void start() {
-        follower.setPose(OpModeStorage.autonmousEndPose);
+        follower.setPose(OpModeStorage.autonomousEndPose);
         follower.update();
     }
 
@@ -34,11 +36,13 @@ public class ExampleFieldCentricDriveTeleOp extends OpMode {
         follower.manual(powers);
         follower.update();
 
+        PanelsUtil.drawRobot(follower.pose());
+
         telemetry.addData("X", follower.pose().x());
         telemetry.addData("Y", follower.pose().y());
         telemetry.addData("Heading", Math.toDegrees(follower.pose().heading()));
         telemetry.addData("Follower Mode", follower.mode());
-        telemetry.update();
+        PanelsUtil.update(telemetry);
     }
 
 }

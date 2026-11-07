@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.OpModeStorage;
+import org.firstinspires.ftc.teamcode.panels.PanelsUtil;
 import org.firstinspires.ftc.teamcode.subsystems.ElevatorSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.GrabberSubsystem;
 
@@ -26,6 +27,8 @@ public class MainTeleOp extends OpMode {
 
     @Override
     public void init() {
+        PanelsUtil.init();
+
         follower = Constants.create(hardwareMap);
         elevator = new ElevatorSubsystem(hardwareMap);
         grabber = new GrabberSubsystem(hardwareMap);
@@ -118,11 +121,14 @@ public class MainTeleOp extends OpMode {
         // Run or update commands
         Scheduler.execute();
 
+        // Draw robot on FTC Panels field map
+        PanelsUtil.drawRobot(follower.pose());
+
         // Update telemetry with helpful info
         telemetry.addData("X", follower.pose().x());
         telemetry.addData("Y", follower.pose().y());
         telemetry.addData("Heading", Math.toDegrees(follower.pose().heading()));
         telemetry.addData("Follower Mode", follower.mode());
-        telemetry.update();
+        PanelsUtil.update(telemetry);
     }
 }
